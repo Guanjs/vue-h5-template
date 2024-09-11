@@ -27,7 +27,8 @@
   const submit = () => {
     ruleForm.value.validate().then(async ({ valid, errors }: any) => {
       if (valid) {
-        const userInfo = await userStore.login();
+        const userInfo = await userStore.login(formData.name, formData.pwd);
+        console.log(userInfo);
         if (userInfo) {
           router.push({ path: '/home' });
         }

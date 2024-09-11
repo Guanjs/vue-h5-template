@@ -1,3 +1,5 @@
+import { getList } from '@/api';
+
 export const listData = [
   {
     imgUrl: '//img10.360buyimg.com/n2/s240x240_jfs/t1/210890/22/4728/163829/6163a590Eb7c6f4b5/6390526d49791cb9.jpg!q70.jpg',
@@ -57,3 +59,16 @@ export const detailsData = [
     shopName: '苏泊尔官方自营店',
   },
 ];
+
+export function getPageListV2(page_num: any, page_size: any) {
+  return new Promise((resolve) => {
+    getList(page_num, page_size)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        // 处理错误
+        console.log('发生错误：', error);
+      });
+  });
+}

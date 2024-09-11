@@ -38,6 +38,13 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
       host: true,
       hmr: true,
       https: true,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:1926',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
     },
     plugins: createVitePlugins(viteEnv, isProduction),
     build: {

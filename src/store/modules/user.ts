@@ -25,9 +25,9 @@ export const useUserStore = defineStore({
     setInfo(info: any) {
       this.info = info ? info : '';
     },
-    login() {
+    login(user_name: string, passwd: string) {
       return new Promise((resolve) => {
-        loginPassword().then((res) => {
+        loginPassword(user_name, passwd).then((res) => {
           this.setInfo(res);
           resolve(res);
         });

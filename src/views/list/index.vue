@@ -13,14 +13,37 @@
   />
 </template>
 
-<script lang="ts" setup name="ListPage">
-  import { listData } from './data';
-  const router = useRouter();
+<script lang="ts" name="ListPage">
+  import { getPageListV2 } from './data';
+  import { useRouter } from 'vue-router';
 
-  let list = ref(listData);
+  export default {
+    setup() {
+      // 使用 ref 创建一个响应式的数据
+      const list = ref();
+      const router = useRouter();
+      const toDetails = (index) => {
+        router.push({ path: '/details', query: { id: index } });
+      };
 
-  const toDetails = (index) => {
-    router.push({ path: '/details', query: { id: index } });
+      // 使用 onMounted 钩子在组件挂载后执行操作
+      onMounted(async () => {
+        try {
+          let response = ref();
+          response.value = await getPageListV2(0, 10);
+          list.value = response.value.data.data;
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          // 在这里处理错误，比如显示错误消息
+        }
+      });
+
+      // 返回给模板的响应式数据
+      return {
+        list,
+        toDetails,
+      };
+    },
   };
 </script>
 

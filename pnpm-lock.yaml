@@ -7663,7 +7663,7 @@ packages:
     hasBin: true
     dependencies:
       commander: 9.2.0
-    dev: true
+    dev: false
 
   /mozjpeg@7.1.1:
     resolution: {integrity: sha512-iIDxWvzhWvLC9mcRJ1uSkiKaj4drF58oCqK2bITm5c2Jt6cJ8qQjSSru2PCaysG+hLIinryj8mgz5ZJzOYTv1A==}
